@@ -1,0 +1,42 @@
+
+
+body { background-color: #000; background: #000 url('../img/prism-bg.jpg') top left no-repeat; background-attachment:fixed;  }
+
+article { width: 960px; background-color: rgba(56, 56, 56, 0.49); border: 1px solid #333333; min-height: 900px; margin: 0 auto; position: relative }
+
+.well { background-color: rgba(56, 56, 56, 0.69); color: #fff; border: 1px solid #626262 }
+
+h1 {
+    color: #fff;
+    text-shadow: 1px 1px 1px #737373;
+    letter-spacing: 1px;
+    font-size: 18px;
+    line-height: 32px;
+    text-transform: uppercase;
+    margin: 0
+}
+form h6 { margin-top: 0 }
+footer.form-actions { margin-top: 0 }
+table { background-color: #fefefe; border-radius: 3px }
+#submit {
+    border-radius: 3px;
+    border: 1px solid #7C62E3;
+    padding: 6px 12px;
+    background-color: rgba(56, 56, 56, 0.79);
+    /*box-shadow: 1px 1px 1px rgba(152, 152, 152, 0.51);*/
+    position: absolute;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    top: 270px;
+    left: 435px;
+    color: #fff;
+    font-weight: 400;
+    background: #925efb; /* Old browsers */
+    background: -moz-linear-gradient(top,  #925efb 0%, #4237cc 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#925efb), color-stop(100%,#4237cc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #925efb 0%,#4237cc 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #925efb 0%,#4237cc 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #925efb 0%,#4237cc 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #925efb 0%,#4237cc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#925efb', endColorstr='#4237cc',GradientType=0 ); /* IE6-9 */
+}
