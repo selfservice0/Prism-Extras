@@ -76,6 +76,7 @@ class Auth {
      * @return string
      */
     public function checkToken( $token_a, $token_b){
+        if(!REQUIRE_AUTH) return true;
         return $this->hasher->CheckPassword( $token_a, $token_b );
     }
 }

@@ -118,7 +118,7 @@ if(!$peregrine->post->isEmpty('username')){
                 </form>
                 <div id="results">
                     <div class="meta">
-                        <div>Found <span>897</span> records. Page <span>1</span> of <span>200</span></div>
+                        <div>Found <span>0</span> records. Page <span>1</span> of <span>1</span></div>
                         <ol>
                            <li>1</li>
                         </ol>
@@ -144,7 +144,6 @@ if(!$peregrine->post->isEmpty('username')){
         </article>
         <div class="modal hide fade">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3>Login</h3>
             </div>
             <div class="modal-body">
@@ -172,7 +171,9 @@ if(!$peregrine->post->isEmpty('username')){
         <script src="js/app.js"></script>
         <?php if(!AUTHENTICATED): ?>
         <script>
-            $('.modal').modal();
+            $('.modal').modal({
+                backdrop: 'static'
+            });
         </script>
         <?php endif; ?>
     </body>
