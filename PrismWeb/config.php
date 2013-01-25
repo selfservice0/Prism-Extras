@@ -37,7 +37,7 @@ define("MYSQL_DATABASE", "minecraft");
 // below.
 
 // Change this to "true" if you want to require authentication
-define("REQUIRE_AUTH", true);
+define("REQUIRE_AUTH", false);
 
 $auth = new Auth();
 
@@ -51,8 +51,8 @@ $auth->addUser( "admin", "prism" );
 // INTERNAL STUFF (IGNORE)
 // ------------------------------------------
 
-error_reporting(E_ALL);
-ini_set('display_errors', true);
+//error_reporting(E_ALL);
+//ini_set('display_errors', true);
 
 session_start();
 

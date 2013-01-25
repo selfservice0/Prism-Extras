@@ -20,37 +20,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="206" selection-end="206" vertical-scroll-proportion="-6.875">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Auth.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs/Auth.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="-27.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="39" selection-start="7775" selection-end="7780" vertical-scroll-proportion="-18.75">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="8" selection-start="4228" selection-end="4241" vertical-scroll-proportion="0.88383347">
+            <state line="20" column="10" selection-start="414" selection-end="414" vertical-scroll-proportion="0.28625953">
               <folding />
             </state>
           </provider>
@@ -73,9 +46,9 @@
         <option value="$PROJECT_DIR$/query.php" />
         <option value="$PROJECT_DIR$/css/app.css" />
         <option value="$PROJECT_DIR$/libs/Auth.php" />
-        <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/config.php" />
       </list>
     </option>
   </component>
@@ -338,30 +311,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
+    <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="206" selection-end="206" vertical-scroll-proportion="-6.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/Auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="-27.5">
+        <state line="43" column="33" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.027105518">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="39" selection-start="7775" selection-end="7780" vertical-scroll-proportion="-18.75">
+        <state line="152" column="39" selection-start="7775" selection-end="7780" vertical-scroll-proportion="0.4347826">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app.js">
+    <entry file="file://$PROJECT_DIR$/libs/Auth.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="8" selection-start="4228" selection-end="4241" vertical-scroll-proportion="0.88383347">
+        <state line="44" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.629771">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="10" selection-start="414" selection-end="414" vertical-scroll-proportion="0.28625953">
           <folding />
         </state>
       </provider>
