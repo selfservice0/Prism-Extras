@@ -23,25 +23,7 @@
       <file leaf-file-name="query.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/query.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="46" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-0.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="4" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="42" selection-start="3813" selection-end="3813" vertical-scroll-proportion="0.0">
+            <state line="140" column="29" selection-start="4646" selection-end="4646" vertical-scroll-proportion="-18.833334">
               <folding />
             </state>
           </provider>
@@ -50,7 +32,16 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="3" selection-start="1383" selection-end="1383" vertical-scroll-proportion="0.44045678">
+            <state line="54" column="42" selection-start="2216" selection-end="2216" vertical-scroll-proportion="0.4004894">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="71" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -68,19 +59,19 @@
       <list>
         <option value="$PROJECT_DIR$/js/jquery.js" />
         <option value="$PROJECT_DIR$/Config.php" />
+        <option value="$PROJECT_DIR$/js/items.json" />
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/query.php" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/css/app.css" />
-        <option value="$PROJECT_DIR$/js/items.json" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="916" />
-    <option name="y" value="137" />
+    <option name="x" value="597" />
+    <option name="y" value="66" />
     <option name="width" value="1809" />
     <option name="height" value="1374" />
   </component>
@@ -110,7 +101,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -143,8 +133,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PrismWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PrismWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,14 +177,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="916" y="137" width="1809" height="1374" extended-state="0" />
+    <frame x="597" y="66" width="1809" height="1374" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2609189" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2643222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -247,13 +252,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="61" column="42" selection-start="3813" selection-end="3813" vertical-scroll-proportion="0.0">
@@ -315,42 +313,51 @@
         <state line="1" column="93510" selection-start="93563" selection-end="93563" vertical-scroll-proportion="0.012366035" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
+    <entry file="file://$PROJECT_DIR$/js/items.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="32" selection-start="138" selection-end="138" vertical-scroll-proportion="0.062396005" />
+        <state line="0" column="7503" selection-start="7503" selection-end="7503" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="42" selection-start="3813" selection-end="3813" vertical-scroll-proportion="0.0">
+        <state line="8" column="0" selection-start="146" selection-end="146" vertical-scroll-proportion="0.09983361">
+          <folding>
+            <element signature="e#7#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/query.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="46" selection-start="2450" selection-end="2450" vertical-scroll-proportion="-0.625">
+        <state line="140" column="29" selection-start="4646" selection-end="4646" vertical-scroll-proportion="-18.833334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/items.json">
+    <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="7503" selection-start="7503" selection-end="7503" vertical-scroll-proportion="0.0">
+        <state line="25" column="50" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.31198004">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="4" selection-start="376" selection-end="376" vertical-scroll-proportion="0.0">
+        <state line="35" column="71" selection-start="1530" selection-end="1530" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="3" selection-start="1383" selection-end="1383" vertical-scroll-proportion="0.44045678">
+        <state line="54" column="42" selection-start="2216" selection-end="2216" vertical-scroll-proportion="0.4004894">
           <folding />
         </state>
       </provider>

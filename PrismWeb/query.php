@@ -18,9 +18,7 @@ $db_selected = mysql_select_db(MYSQL_DATABASE, $link);
 // @todo handle mysql errors
 
 // Build our query
-$sql = 'SELECT * FROM prism_actions WHERE 1=1';
-
-
+$sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM prism_actions WHERE 1=1';
 
     function buildOrQuery( $fieldname, $values ){
         $where = "";
@@ -85,7 +83,7 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
         $actions = explode(",", $peregrine->post->getRaw('actions'));
         $sql .= buildOrQuery('prism_actions.action_type',$actions);
     }
-    $sql .= ' AND LEFT(prism_actions.action_type,5) !=  "prism"';
+    $sql .= ' AND prism_actions.action_type NOT LIKE "%prism%"';
 
     // Players
     if(!$peregrine->post->isEmpty('players')){
@@ -105,33 +103,83 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
         $sql .= buildOrLikeQuery('prism_actions.data',$matches);
     }
 
-//    // Timeframe
-//    if(!$peregrine->post->isEmpty('time')){
-//        $world = explode(",", $peregrine->post->getUsername('time'));
-//        $sql .= buildOrQuery('prism_actions.world',$world);
-//    }
+    // Blocks
+    if(!$peregrine->post->isEmpty('blocks')){
+        $blocks = explode(",", $peregrine->post->getRaw('blocks'));
+        $match = array();
+        foreach($blocks as $block){
+            $match[] = 'block_id":'.$block.',';
+        }
+        $sql .= buildOrLikeQuery('prism_actions.data',$match);
+    }
+
+    // Timeframe
+    if(!$peregrine->post->isEmpty('time')){
+        preg_match_all('/([0-9]+)(s|h|m|d|w)/', $peregrine->post->getAlnum('time'), $matches);
+        $timeAgo = array();
+        if($matches){
+            if(is_array($matches[0])){
+                foreach($matches[0] as $key => $match){
+                    if($matches[2][$key] == "s"){
+                        $timeAgo[] = $matches[1][$key] . " seconds";
+                    }
+                    if($matches[2][$key] == "m"){
+                        $timeAgo[] = $matches[1][$key] . " minutes";
+                    }
+                    if($matches[2][$key] == "h"){
+                        $timeAgo[] = $matches[1][$key] . " hours";
+                    }
+                    if($matches[2][$key] == "d"){
+                        $timeAgo[] = $matches[1][$key] . " days";
+                    }
+                    if($matches[2][$key] == "w"){
+                        $timeAgo[] = $matches[1][$key] . " weeks";
+                    }
+                }
+            }
+        }
+        if(!empty($timeAgo)){
+            $beforeDate = date("Y-m-d H:i:s", strtotime( implode(" ", $timeAgo) . " ago" ));
+            $sql .= ' AND prism_actions.action_time >=  "'.$beforeDate.'"';
+        }
+    }
 
 
 // Order by
 $sql .= ' ORDER BY action_time DESC, id DESC';
 
+$response = array(
+    'results' => false,
+    'total_results' => 0,
+    'per_page' => 25,
+    'pages' => 0,
+    'curr_page' => $peregrine->post->getInt('curr_page')
+);
+
+
 // Limit
-$sql .= ' LIMIT 0,25';
+$offset = ($response['curr_page']-1)*$response['per_page'];
+$sql .= ' LIMIT '.$offset.','.$response['per_page'];
 
-
-$results = array();
-
-$prism_result = mysql_query($sql);
+$prism_result = mysql_query( $sql );
 if($prism_result){
+    $results = array();
     while( $row = mysql_fetch_assoc($prism_result)){
-
         if(strpos($row['data'], "{") !== false){
             $row['data'] = (array)json_decode($row['data']);
         }
-
         $results[] = $row;
-
     }
+    $response['results'] = $results;
+
+    // total records
+    $prism_result = mysql_query( 'SELECT FOUND_ROWS()' );
+    while( $row = mysql_fetch_array($prism_result)){
+        $response['total_results'] = $row[0];
+    }
+
+    $response['pages'] = ($response['total_results'] > 0 ? ceil($response['total_results'] / $response['per_page']) : 0);
 }
 
-print json_encode( array('results'=>$results) );
+header('Content-type: text/javascript');
+print json_encode( $response );

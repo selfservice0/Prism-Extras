@@ -11,9 +11,9 @@
             <div class="container">
                 <h1>Prism</h1>
                 <form id="frm-search" action="#" method="post">
+                    <input type="hidden" id="curr_page" name="curr_page" value="1" />
                     <div class="row">
                         <fieldset class="span6">
-    <!--                        <h6>Who, Where...</h6>-->
                             <div class="well">
                                 <div class="row">
                                     <div class="control-group span2">
@@ -64,7 +64,6 @@
                             </div>
                         </fieldset>
                         <fieldset class="span6">
-    <!--                        <h6>...and What</h6>-->
                             <div class="well">
                                 <div class="control-group">
                                     <label class="control-label" for="actions">Actions</label>
@@ -87,12 +86,15 @@
                             </div>
                         </fieldset>
                     </div>
-<!--                    <footer class="form-actions clearfix">-->
-<!--                        <button type="submit" class="btn btn-primary right">Search</button>-->
-<!--                    </footer>-->
                     <button id="submit" type="submit" class="">Search</button>
                 </form>
                 <div id="results">
+                    <div class="meta">
+                        <div>Found <span>897</span> records. Page <span>1</span> of <span>200</span></div>
+                        <ol>
+                           <li>1</li>
+                        </ol>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -109,7 +111,7 @@
                         </tbody>
                     </table>
                 </div>
-<!--                <p>2013, DHMC</p>-->
+                <footer><p>2013 &mdash; By Viveleroi</p></footer>
             </div>
         </article>
         <script src="js/jquery.js"></script>
