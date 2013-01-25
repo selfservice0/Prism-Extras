@@ -156,13 +156,13 @@ if(!$peregrine->post->isEmpty('username')){
                     <div class="control-group">
                         <label class="control-label" for="username">Username</label>
                         <div class="controls">
-                            <input type="text" placeholder="username" id="username" name="username" value="">
+                            <input type="text" placeholder="" id="username" name="username" value="">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="password">Password</label>
                         <div class="controls">
-                            <input type="text" placeholder="password" id="password" name="password" value="">
+                            <input type="password" placeholder="" id="password" name="password" value="">
                         </div>
                     </div>
                  </form>

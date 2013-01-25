@@ -14,7 +14,7 @@ $db_selected = mysql_select_db(MYSQL_DATABASE, $link);
 // @todo handle mysql errors
 
 // Build our query
-$sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM prism_actions WHERE 1=1';
+$sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
     function buildOrQuery( $fieldname, $values ){
         $where = "";
@@ -140,15 +140,24 @@ $sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM prism_actions WHERE 1=1';
         }
     }
 
+    // Count total records
+    // This is much faster than using SQL_CALC_FOUND_ROWS
+    $total_results = 0;
+    $count_sql = str_replace("SELECT *", "SELECT COUNT(id)", $sql);
+    $prism_result = mysql_query( $count_sql );
+    while( $row = mysql_fetch_array($prism_result)){
+        $total_results = $row[0];
+    }
+
 
 // Order by
-$sql .= ' ORDER BY action_time DESC, id DESC';
+$sql .= ' ORDER BY id DESC';
 
 $response = array(
     'results' => false,
-    'total_results' => 0,
+    'total_results' => $total_results,
     'per_page' => 25,
-    'pages' => 0,
+    'pages' => ($total_results > 0 ? ceil($total_results / 25) : 0),
     'curr_page' => $peregrine->post->getInt('curr_page')
 );
 
@@ -156,6 +165,7 @@ $response = array(
 // Limit
 $offset = ($response['curr_page']-1)*$response['per_page'];
 $sql .= ' LIMIT '.$offset.','.$response['per_page'];
+
 
 $prism_result = mysql_query( $sql );
 if($prism_result){
@@ -167,14 +177,6 @@ if($prism_result){
         $results[] = $row;
     }
     $response['results'] = $results;
-
-    // total records
-    $prism_result = mysql_query( 'SELECT FOUND_ROWS()' );
-    while( $row = mysql_fetch_array($prism_result)){
-        $response['total_results'] = $row[0];
-    }
-
-    $response['pages'] = ($response['total_results'] > 0 ? ceil($response['total_results'] / $response['per_page']) : 0);
 }
 
 header('Content-type: text/javascript');
