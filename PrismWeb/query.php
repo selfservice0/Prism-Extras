@@ -1,15 +1,10 @@
 <?php
 
-
-ini_set("display_errors", true);
-error_reporting(E_ALL);
-
-require_once('libs/Peregrine.php');
 require_once('config.php');
 
-$peregrine = new Peregrine;
-$peregrine->init();
-
+if(!$auth->authUser( $peregrine->session->getUsername('username'), $peregrine->session->getUsername('password'))){
+//    exit;
+}
 
 // Connect with db
 $link = mysql_connect(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD);

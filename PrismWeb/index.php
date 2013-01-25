@@ -1,3 +1,12 @@
+<?php
+
+require_once('config.php');
+
+if(!$auth->authUser( $peregrine->session->getUsername('username'), $peregrine->session->getRaw('token'))){
+//    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
