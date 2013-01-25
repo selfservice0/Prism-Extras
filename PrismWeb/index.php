@@ -10,10 +10,12 @@ if(!$peregrine->post->isEmpty('username')){
         $_SESSION['username'] = $peregrine->post->getUsername('username');
         $token = $peregrine->post->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
         $_SESSION['token'] = $auth->hashString( $token );
+        header("Location: index.php");
+    } else {
+        header("Location: index.php?auth_failed=1");
     }
     // No need to refresh cage, we're redirecting so a reload
     // won't cause a new POST
-    header("Location: index.php");
     exit;
 } else {
 
@@ -147,6 +149,9 @@ if(!$peregrine->post->isEmpty('username')){
                 <h3>Login</h3>
             </div>
             <div class="modal-body">
+                <?php if($peregrine->get->getInt('auth_failed')): ?>
+                   <p class="text-error">Authentication failed.</p>
+                <?php endif; ?>
                 <form id="frm-login" action="#" method="post">
                     <div class="control-group">
                         <label class="control-label" for="username">Username</label>

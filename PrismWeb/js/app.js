@@ -3,7 +3,6 @@
 $(function(){
     $('#frm-search').submit(function(){
         $.post('query.php', $(this).serialize(), function(resp){
-            $('.text-error').remove();
             if(resp.results.length > 0){
                 $('.table tbody td').remove();
                 for(r in resp.results){
@@ -86,7 +85,7 @@ $(function(){
                 }
 
             } else {
-                $('button').after('<span class="text-error">No results found. Try again.</span>')
+//                $('button').after('<span class="text-error">No results found. Try again.</span>')
             }
         }, 'json');
         return false;
