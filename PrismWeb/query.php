@@ -2,8 +2,9 @@
 
 require_once('config.php');
 
-if(!$auth->authUser( $peregrine->session->getUsername('username'), $peregrine->session->getUsername('password'))){
-//    exit;
+$token = $peregrine->session->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
+if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){
+    exit;
 }
 
 // Connect with db

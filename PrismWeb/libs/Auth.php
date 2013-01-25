@@ -53,10 +53,29 @@ class Auth {
         if(!REQUIRE_AUTH) return true;
         if(isset($this->auth[$username])){
             $user = $this->auth[$username];
+            var_dump($user);
             if($this->hasher->CheckPassword($password,$user['password'])){
                 return true;
             }
         }
         return false;
+    }
+
+
+    /**
+     * @param $token
+     * @return string
+     */
+    public function hashString($token){
+        return $this->hasher->HashPassword( $token );
+    }
+
+
+    /**
+     * @param $token
+     * @return string
+     */
+    public function checkToken( $token_a, $token_b){
+        return $this->hasher->CheckPassword( $token_a, $token_b );
     }
 }

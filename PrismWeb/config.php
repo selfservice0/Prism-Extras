@@ -41,9 +41,10 @@ define("REQUIRE_AUTH", true);
 
 $auth = new Auth();
 
-// Define usernames and passwords below.
+// Define usernames and passwords below, in the format of
+// $auth->addUser( "username", "password" );
 
-$auth->addUser( "username", "password" );
+$auth->addUser( "admin", "prism" );
 
 
 // ------------------------------------------

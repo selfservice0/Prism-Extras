@@ -2,8 +2,27 @@
 
 require_once('config.php');
 
-if(!$auth->authUser( $peregrine->session->getUsername('username'), $peregrine->session->getRaw('token'))){
-//    exit;
+// If login form submitted
+if(!$peregrine->post->isEmpty('username')){
+
+    // Verify username/password - then set an auth token
+    if($auth->authUser($peregrine->post->getUsername('username'), $peregrine->post->getRaw('password'))){
+        $_SESSION['username'] = $peregrine->post->getUsername('username');
+        $token = $peregrine->post->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
+        $_SESSION['token'] = $auth->hashString( $token );
+    }
+    // No need to refresh cage, we're redirecting so a reload
+    // won't cause a new POST
+    header("Location: index.php");
+    exit;
+} else {
+
+    $token = $peregrine->session->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
+    if($auth->checkToken($token,$peregrine->session->getRaw('token'))){
+        define('AUTHENTICATED', true);
+    } else {
+        define('AUTHENTICATED', false);
+    }
 }
 
 ?>
@@ -123,7 +142,38 @@ if(!$auth->authUser( $peregrine->session->getUsername('username'), $peregrine->s
                 <footer><p>2013 &mdash; By Viveleroi</p></footer>
             </div>
         </article>
+        <div class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Login</h3>
+            </div>
+            <div class="modal-body">
+                <form id="frm-login" action="#" method="post">
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            <input type="text" placeholder="username" id="username" name="username" value="">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="text" placeholder="password" id="password" name="password" value="">
+                        </div>
+                    </div>
+                 </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary">Login</a>
+            </div>
+        </div>
         <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script src="js/app.js"></script>
+        <?php if(!AUTHENTICATED): ?>
+        <script>
+            $('.modal').modal();
+        </script>
+        <?php endif; ?>
     </body>
 </html>

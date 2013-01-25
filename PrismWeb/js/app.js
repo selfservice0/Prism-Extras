@@ -97,5 +97,10 @@ $(function(){
         $('#curr_page').val( $(this).data('page') );
         $('#frm-search').submit();
         return false;
+    });
+
+    $('.modal .btn').click(function(){
+        $('#frm-login').submit();
+        return false;
     })
 });
