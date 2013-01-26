@@ -98,7 +98,7 @@ if(!$peregrine->post->isEmpty('username')){
                                 <div class="control-group">
                                     <label class="control-label" for="actions">Actions</label>
                                     <div class="controls">
-                                        <input type="text" class="span5" placeholder="break,burn" id="actions" name="actions" value="">
+                                        <input type="text" class="span5" placeholder="block-break" id="actions" name="actions" value="">
                                     </div>
                                 </div>
                                 <div class="control-group">

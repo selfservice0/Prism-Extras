@@ -94,6 +94,10 @@ $(function(){
         return false;
     }).trigger('submit');
 
+    $('#submit').click(function(){
+        $('#curr_page').val( 1 );
+    });
+
     $('.meta ol').delegate('li a', 'click', function(e){
         e.preventDefault();
         $('#curr_page').val( $(this).data('page') );
