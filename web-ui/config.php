@@ -4,6 +4,7 @@
 // By viveleroi.
 require_once('libs/Peregrine.php');
 require_once('libs/Auth.php');
+define('WEB_UI_VERSION', 'nightly');
 
 
 // ------------------------------------------
