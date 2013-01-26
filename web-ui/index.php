@@ -144,7 +144,7 @@ if(!$peregrine->post->isEmpty('username')){
                         </table>
                     </div>
                 </div>
-                <footer><p>2013 &mdash; By Viveleroi</p></footer>
+                <footer><p>Prism WebUI <?= WEB_UI_VERSION ?> &mdash; By Viveleroi</p></footer>
             </div>
         </article>
         <div class="modal hide fade">
