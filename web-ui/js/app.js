@@ -2,9 +2,11 @@
 
 $(function(){
     $('#frm-search').submit(function(){
+        $('.table tbody td').remove();
+        $('#loading').show();
         $.post('query.php', $(this).serialize(), function(resp){
             if(resp.results.length > 0){
-                $('.table tbody td').remove();
+                $('#loading').hide();
                 for(r in resp.results){
 
                     data = resp.results[r].data;
@@ -55,6 +57,7 @@ $(function(){
                         for(p = 2; p <= 6; p++){
                             ol.append( '<li'+(resp.curr_page == p ? ' class="at"' : '')+'><a href="#" data-page="'+p+'">'+p+'</a></li>' );
                         }
+                        ol.append( '<li><span>&hellip;</span></li>' );
                     } else {
 
                         ol.append( '<li><span>&hellip;</span></li>' );

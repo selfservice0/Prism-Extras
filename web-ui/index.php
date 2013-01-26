@@ -125,21 +125,24 @@ if(!$peregrine->post->isEmpty('username')){
                            <li>1</li>
                         </ol>
                     </div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>World</th>
-                                <th>Loc</th>
-                                <th>Action</th>
-                                <th>Player</th>
-                                <th>Data</th>
-                                <th>Timestamp</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="table-wrap">
+                        <div id="loading"></div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>World</th>
+                                    <th>Loc</th>
+                                    <th>Action</th>
+                                    <th>Player</th>
+                                    <th>Data</th>
+                                    <th>Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <footer><p>2013 &mdash; By Viveleroi</p></footer>
             </div>

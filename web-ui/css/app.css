@@ -12,7 +12,22 @@ h1 {
 }
 form h6 { margin-top: 0 }
 footer.form-actions { margin-top: 0 }
-table { background-color: #fefefe; border-radius: 3px }
+.table-wrap { background-color: #fefefe; border-radius: 3px; min-height: 1200px; position: relative }
+table { width: 940px }
+table th:first-child { width: 70px; }
+table th:nth-child(2) { width: 120px; }
+table th:nth-child(3) { width: 140px; }
+table th:nth-child(4) { width: 120px; }
+table th:nth-child(5) { width: 310px; }
+table th:nth-child(6) { width: 180px; }
+#loading {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    width: 45px;
+    height: 45px;
+    background: transparent url('../img/loading.gif') top left no-repeat }
 #submit, .btn, .btn:hover {
     border-radius: 3px;
     border: 1px solid #7C62E3;
