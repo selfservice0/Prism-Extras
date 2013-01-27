@@ -12,6 +12,15 @@
 
 SET @world = 'world';
 
+
+-- IMPORTANT: Some queries, like chat, commands, etc only work if you have those
+-- tables - if those actions are recorded. Be sure to remove any queries for
+-- tables you do not have.
+--
+-- ALSO, know that logblock does not record coordinates for chat or commands
+-- so you should only run those queries once.
+--
+
 -- @todo - use var properly in table names
 
 -- DO NOT edit below this line.
@@ -153,16 +162,32 @@ INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
   WHERE `lb-world`.type = `lb-world`.replaced;
 
 -- @todo sign-change
--- @todo world-edit -- can't find where data is recorded in tests
--- @todo block-fade
+-- Sign changes are stored in a way that we really can't do much with. LB merges
+-- each line into a single line so I'm not sure the best way to handle that.
 
--- @todo block-spread
--- @todo player-chat -- can't find where data is recorded in tests
--- @todo player-death -- can't find where data is recorded in tests
+-- @todo world-edit -- can't find where data is recorded in tests
+
+-- player-chat
+-- We can't properly import player chat because there are no coordinates associated.
+-- Uncomment this to load chat, but with fake coords.
+-- INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+--   SELECT `lb-chat`.date, "player-chat", `lb-players`.playername, @world, 0, 0, 0, `lb-chat`.message
+--   FROM `lb-chat`
+--   JOIN `lb-players` ON `lb-players`.playerid = `lb-chat`.playerid
+--   WHERE LEFT(`lb-chat`.message, 1) != "/";
+
+-- player-command
+-- We can't properly import player commands because there are no coordinates associated.
+-- Uncomment this to load commands, but with fake coords.
+-- INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+--   SELECT `lb-chat`.date, "player-chat", `lb-players`.playername, @world, 0, 0, 0, `lb-chat`.message
+--   FROM `lb-chat`
+--   JOIN `lb-players` ON `lb-players`.playerid = `lb-chat`.playerid
+--   WHERE LEFT(`lb-chat`.message, 1) = "/";
 
 
 -- During development, it appears that logblock does not track
--- the following events, which Prism does track:
+-- the following events, which Prism does:
 
 -- block-fall
 -- block-shift
@@ -181,7 +206,7 @@ INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
 -- item-pickup
 -- lava-ignite
 -- lightning
--- player-command
+-- player-death (they seem to only record kills, not all deaths)
 -- player-join
 -- player-quit
 -- sheep-eat
