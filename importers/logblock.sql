@@ -1,17 +1,17 @@
 
 -- PRISM Import Script
--- for LOGBLOCK
+-- for LogBlock
 --
---
--- Run this script in your MySQL server console, or an application
--- that runs SQL queries, like phpMyAdmin, etc.
---
--- LogBlocks stores data in a different table per world.
+-- STEP 1: LogBlocks stores data in a different table per world.
 -- Please change the following world name for every world
 -- you wish to import. For example, 'world_nether', etc.
 
 SET @world = 'world';
 
+-- STEP 2: After changing the world name, also do a search/replace for "lb-world" and change it to "lb-yourWorldName"
+
+-- STEP 3: Run this script in your MySQL server console, or an application
+-- that runs SQL queries, like phpMyAdmin, etc.
 
 -- IMPORTANT: Some queries, like chat, commands, etc only work if you have those
 -- tables - if those actions are recorded. Be sure to remove any queries for
@@ -21,12 +21,6 @@ SET @world = 'world';
 -- so you should only run those queries once.
 --
 
--- @todo - use var properly in table names
-
--- DO NOT edit below this line.
-
--- TEMP ONLY, for dev
-TRUNCATE TABLE prism_actions;
 
 -- block-break
 INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
@@ -150,7 +144,6 @@ INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
   JOIN `lb-players` ON `lb-players`.playerid = `lb-world`.playerid AND `lb-players`.playername = "Enderman"
   WHERE `lb-world`.replaced IN (0, 8, 9, 10, 11, 78);
 
-
 -- @todo item-insert
 -- @todo item-remove
 
@@ -161,11 +154,8 @@ INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
   JOIN `lb-players` ON `lb-players`.playerid = `lb-world`.playerid
   WHERE `lb-world`.type = `lb-world`.replaced;
 
--- @todo sign-change
 -- Sign changes are stored in a way that we really can't do much with. LB merges
 -- each line into a single line so I'm not sure the best way to handle that.
-
--- @todo world-edit -- can't find where data is recorded in tests
 
 -- player-chat
 -- We can't properly import player chat because there are no coordinates associated.
