@@ -83,4 +83,4 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_signs`.bcords , '.', -2 ),'.',1),
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
-	WHERE (`co_blocks`.user NOT LIKE '%#%') AND (`co_blocks`.action < 2 ) ORDER BY id ASC;
+	WHERE (`co_blocks`.user LIKE '#enderman') AND (`co_blocks`.action < 2 ) ORDER BY id ASC;
