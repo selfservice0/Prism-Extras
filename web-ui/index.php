@@ -153,6 +153,12 @@ if(!$peregrine->post->isEmpty('username')){
                             </tbody>
                         </table>
                     </div>
+                    <div class="meta">
+                        <div>Found <span>0</span> records. Page <span>1</span> of <span>1</span></div>
+                        <ol>
+                            <li>1</li>
+                        </ol>
+                    </div>
                 </div>
                 <footer><p>Prism WebUI <?= WEB_UI_VERSION ?> &mdash; By Viveleroi</p></footer>
             </div>

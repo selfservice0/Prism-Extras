@@ -11,9 +11,10 @@ h1 {
     margin: 0
 }
 form h6 { margin-top: 0 }
+.dropdown-toggle.btn { margin-bottom: 10px }
 footer.form-actions { margin-top: 0 }
 .table-wrap { background-color: #fefefe; border-radius: 3px; min-height: 1200px; position: relative }
-table { width: 940px }
+table, .table { width: 940px; margin-bottom: 0 }
 table th:first-child { width: 70px; }
 table th:nth-child(2) { width: 120px; }
 table th:nth-child(3) { width: 140px; }
@@ -60,4 +61,4 @@ table th:nth-child(6) { width: 180px; }
 .meta li a { border: 1px solid #656360; color: #EAEAEA; }
 .meta li.at a { background: black; color: #fff }
 .modal { width:250px; left: 60% }
-footer { color: #fff }
+footer { color: #fff; margin-top: 10px; font-size: 10px }
