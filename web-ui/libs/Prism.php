@@ -4,11 +4,24 @@
  */
 class Prism {
 
+    /**
+     * @var array|void
+     */
+    protected $items = array();
+
 
     /**
      *
      */
-    public static function getActionTypes(){
+    public function __construct(){
+        $this->parseItemList();
+    }
+
+
+    /**
+     *
+     */
+    public function getActionTypes(){
 
         return array(
         'block-break',
@@ -63,5 +76,35 @@ class Prism {
         'water-flow',
         'world-edit'
         );
+    }
+
+
+    /**
+     * @return array|void
+     */
+    public function getItemList(){
+        return $this->items;
+    }
+
+
+    /**
+     *
+     */
+    protected function parseItemList(){
+
+        $items = array();
+
+        $path = str_replace("libs", "js", dirname(__FILE__));
+
+        if(file_exists($path . DIRECTORY_SEPARATOR . 'items.json')){
+            $fcontents = file_get_contents( $path . DIRECTORY_SEPARATOR . 'items.json');
+            if($fcontents){
+                $items = (array)json_decode($fcontents, true);
+                if($items){
+                    asort($items);
+                    $this->items = $items;
+                }
+            }
+        }
     }
 }

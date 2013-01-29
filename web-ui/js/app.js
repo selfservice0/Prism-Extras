@@ -88,7 +88,8 @@ $(function(){
                 }
 
             } else {
-//                $('button').after('<span class="text-error">No results found. Try again.</span>')
+                $('#loading').hide();
+                $('table tbody').append('<tr><td colspan="6">No results found. Try again.</td></tr>')
             }
         }, 'json');
         return false;

@@ -101,10 +101,11 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
     // Blocks
     if(!$peregrine->post->isEmpty('blocks')){
-        $blocks = explode(",", $peregrine->post->getRaw('blocks'));
+        $blocks = $peregrine->post->getArray('blocks');
         $match = array();
         foreach($blocks as $block){
-            $match[] = 'block_id":'.$block.',';
+            $ids = explode(':', $block);
+            $match[] = 'block_id":'.$ids[0].',"block_subid":'.$ids[1];
         }
         $sql .= buildOrLikeQuery('prism_actions.data',$match);
     }
@@ -152,6 +153,9 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
 // Order by
 $sql .= ' ORDER BY id DESC';
+
+//print $sql;
+//exit;
 
 $response = array(
     'results' => false,

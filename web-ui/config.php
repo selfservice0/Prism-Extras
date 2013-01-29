@@ -60,3 +60,5 @@ session_start();
 
 $peregrine = new Peregrine;
 $peregrine->init();
+
+$prism = new Prism;
