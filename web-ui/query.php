@@ -76,7 +76,7 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
     // Actions
     if(!$peregrine->post->isEmpty('actions')){
-        $actions = explode(",", $peregrine->post->getRaw('actions'));
+        $actions = $peregrine->post->getArray('actions');
         $sql .= buildOrQuery('prism_actions.action_type',$actions);
     }
     $sql .= ' AND prism_actions.action_type NOT LIKE "%prism%"';
