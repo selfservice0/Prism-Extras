@@ -174,9 +174,22 @@ $sql .= ' LIMIT '.$offset.','.$response['per_page'];
 $prism_result = mysql_query( $sql );
 if($prism_result){
     $results = array();
+    $blocks = $prism->getItemList();
     while( $row = mysql_fetch_assoc($prism_result)){
         if(strpos($row['data'], "{") !== false){
+
             $row['data'] = (array)json_decode($row['data']);
+
+            if(isset($row['data']['block_id'])){
+                $key = $row['data']['block_id'] . ':' . $row['data']['block_subid'];
+                if(isset($blocks[$key])){
+                    $row['data'] = ucwords($blocks[$key]);
+                }
+                // check for some data items having an unusable subid
+                else if(isset($blocks[$row['data']['block_id'] . ':0'])){
+                    $row['data'] = ucwords($blocks[$row['data']['block_id'] . ':0']);
+                }
+            }
         }
         $results[] = $row;
     }
