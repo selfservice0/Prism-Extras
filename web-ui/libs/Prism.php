@@ -107,4 +107,15 @@ class Prism {
             }
         }
     }
+
+
+    /**
+     * @param $name
+     * @return bool|mixed
+     */
+    public function getBlockIdFromName( $name ){
+        $key = array_search($name, $this->items);
+        if($key) return $key;
+        return false;
+    }
 }

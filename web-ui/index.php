@@ -98,23 +98,13 @@ if(!$peregrine->post->isEmpty('username')){
                                 <div class="control-group">
                                     <label class="control-label" for="actions">Actions</label>
                                     <div class="controls">
-                                        <select name="actions[]" id="actions" multiple="multiple">
-                                            <?php $actions = $prism->getActionTypes(); ?>
-                                            <?php if($actions): foreach($actions as $a): ?>
-                                            <option value="<?= $a ?>"><?= ucwords(str_replace("-", " ", $a)) ?></option>
-                                            <?php endforeach; endif; ?>
-                                        </select>
+                                        <input type="text" class="typeahead span5" name="actions" id="actions" placeholder="block-break,block-place" />
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="blocks">Blocks</label>
+                                    <label class="control-label" for="blocks">Blocks/Items</label>
                                     <div class="controls">
-                                        <select name="blocks[]" id="blocks" multiple="multiple">
-                                            <?php $blocks = $prism->getItemList(); ?>
-                                            <?php if($blocks): foreach($blocks as $key => $block): ?>
-                                            <option value="<?= $key ?>"><?= ucwords($block) ?></option>
-                                            <?php endforeach; endif; ?>
-                                        </select>
+                                        <input type="text" class="typeahead span5" name="blocks" id="blocks" placeholder="stone,dirt" />
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -181,7 +171,7 @@ if(!$peregrine->post->isEmpty('username')){
                     <div class="control-group">
                         <label class="control-label" for="password">Password</label>
                         <div class="controls">
-                            <input type="password" placeholder="" id="password" name="password" value="">
+                            <input type="password" class="span3" placeholder="" id="password" name="password" value="">
                         </div>
                     </div>
                  </form>
@@ -192,14 +182,19 @@ if(!$peregrine->post->isEmpty('username')){
         </div>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-multiselect.js"></script>
         <script src="js/app.js"></script>
         <script>
-            $('#actions').multiselect({
-                buttonWidth: '380px'
+            $('#actions').typeahead({
+                source: <?= json_encode( $prism->getActionTypes() ) ?>,
+                updater: updater,
+                matcher: matcher,
+                highlighter: highlighter
             });
-            $('#blocks').multiselect({
-                buttonWidth: '380px'
+            $('#blocks').typeahead({
+                source: <?= json_encode( array_values($prism->getItemList()) ) ?>,
+                updater: updater,
+                matcher: matcher,
+                highlighter: highlighter
             });
             <?php if(!AUTHENTICATED): ?>
             $('.modal').modal({

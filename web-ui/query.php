@@ -22,6 +22,7 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
             $where .= " AND (";
             $c = 1;
             foreach($values as $val){
+                if(empty($val)) continue;
                 if($c > 1 && $c <= count($values)){
                     $where .= " OR ";
                 }
@@ -39,6 +40,7 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
             $where .= " AND (";
             $c = 1;
             foreach($values as $val){
+                if(empty($val)) continue;
                 if($c > 1 && $c <= count($values)){
                     $where .= " OR ";
                 }
@@ -76,7 +78,7 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
     // Actions
     if(!$peregrine->post->isEmpty('actions')){
-        $actions = $peregrine->post->getArray('actions');
+        $actions = explode(",", $peregrine->post->getRaw('actions'));
         $sql .= buildOrQuery('prism_actions.action_type',$actions);
     }
     $sql .= ' AND prism_actions.action_type NOT LIKE "%prism%"';
@@ -101,11 +103,14 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
     // Blocks
     if(!$peregrine->post->isEmpty('blocks')){
-        $blocks = $peregrine->post->getArray('blocks');
+        $blocks = explode(",", $peregrine->post->getRaw('blocks'));
         $match = array();
         foreach($blocks as $block){
-            $ids = explode(':', $block);
-            $match[] = 'block_id":'.$ids[0].',"block_subid":'.$ids[1];
+            if(!empty($block)){
+                $key = $prism->getBlockIdFromName($block);
+                $ids = explode(':', $key);
+                $match[] = 'block_id":'.$ids[0].',"block_subid":'.$ids[1];
+            }
         }
         $sql .= buildOrLikeQuery('prism_actions.data',$match);
     }

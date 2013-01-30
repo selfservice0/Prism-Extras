@@ -1,5 +1,3 @@
-
-
 $(function(){
     $('#frm-search').submit(function(){
         $('.table tbody td').remove();
@@ -109,5 +107,27 @@ $(function(){
     $('.modal .btn').click(function(){
         $('#frm-login').submit();
         return false;
-    })
+    });
 });
+
+/* Multi-select type-ahead */
+function extractor(query) {
+    var result = /([^,]+)$/.exec(query);
+    if(result && result[1])
+        return result[1].trim();
+    return '';
+}
+function updater(item){
+    return this.$element.val().replace(/[^,]*$/,'')+item+',';
+}
+function matcher(item) {
+    var tquery = extractor(this.query);
+    if(!tquery) return false;
+    return ~item.toLowerCase().indexOf(tquery)
+}
+function highlighter(item) {
+    var query = extractor(this.query).replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&')
+    return item.replace(new RegExp('(' + query + ')', 'ig'), function ($1, match) {
+        return '<strong>' + match + '</strong>'
+    })
+}
