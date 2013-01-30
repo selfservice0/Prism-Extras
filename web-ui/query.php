@@ -162,11 +162,17 @@ $sql .= ' ORDER BY id DESC';
 //print $sql;
 //exit;
 
+$per_page = $peregrine->post->getInt('per_page');
+// Try to ensure it's somewhat sensible
+if($per_page <= 0 || $per_page > 10000){
+    $per_page = 25;
+}
+
 $response = array(
     'results' => false,
     'total_results' => $total_results,
-    'per_page' => 25,
-    'pages' => ($total_results > 0 ? ceil($total_results / 25) : 0),
+    'per_page' => $per_page,
+    'pages' => ($total_results > 0 ? ceil($total_results / $per_page) : 0),
     'curr_page' => $peregrine->post->getInt('curr_page')
 );
 

@@ -42,6 +42,7 @@ if(!$peregrine->post->isEmpty('username')){
                 <h1>Prism</h1>
                 <form id="frm-search" action="#" method="post">
                     <input type="hidden" id="curr_page" name="curr_page" value="1" />
+                    <input type="hidden" id="per_page" name="per_page" value="25" />
                     <div class="row">
                         <fieldset class="span6">
                             <div class="well">
@@ -124,6 +125,15 @@ if(!$peregrine->post->isEmpty('username')){
                         <ol>
                            <li>1</li>
                         </ol>
+                        <form>
+                            <label for="set-per-page">Per Page: </label>
+                            <select name="set-per-page" id="set-per-page" class="span1">
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                                <option>500</option>
+                            </select>
+                        </form>
                     </div>
                     <div class="table-wrap">
                         <div id="loading"></div>

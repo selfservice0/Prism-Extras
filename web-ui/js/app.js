@@ -45,7 +45,7 @@ $(function(){
                 ol.append( '<li'+(resp.curr_page == 1 ? ' class="at"' : '')+'><a href="#" data-page="1">1</a></li>' );
 
                 if(resp.pages < 8){
-                    for(p = 1; p <= resp.pages; p++){
+                    for(p = 2; p <= resp.pages; p++){
                         ol.append( '<li'+(resp.curr_page == p ? ' class="at"' : '')+'><a href="#" data-page="'+p+'">'+p+'</a></li>' );
                     }
                 } else {
@@ -96,6 +96,11 @@ $(function(){
     $('#submit').click(function(){
         $('#curr_page').val( 1 );
     });
+
+    $('#set-per-page').change(function(){
+        $('#per_page').val( $(this).val() );
+        $('#frm-search').submit();
+    })
 
     $('.meta ol').delegate('li a', 'click', function(e){
         e.preventDefault();
