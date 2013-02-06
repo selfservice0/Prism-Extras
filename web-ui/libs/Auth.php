@@ -53,7 +53,6 @@ class Auth {
         if(!REQUIRE_AUTH) return true;
         if(isset($this->auth[$username])){
             $user = $this->auth[$username];
-            var_dump($user);
             if($this->hasher->CheckPassword($password,$user['password'])){
                 return true;
             }

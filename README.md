@@ -27,6 +27,8 @@ Prism not only offers the standard features you expect, but a **lot** more.
 
 [DISCOVER-PRISM.COM](http://discover-prism.com/ )
 
+[Contribute/Source](https://github.com/botskonet/Prism )
+
 
 ## Some Videos
 
