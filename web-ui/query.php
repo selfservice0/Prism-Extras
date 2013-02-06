@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.sample.php');
+require_once('config.php');
 
 $token = $peregrine->session->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
 if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){

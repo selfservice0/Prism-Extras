@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.sample.php');
+require_once('config.php');
 
 // If login form submitted
 if(!$peregrine->post->isEmpty('username')){
