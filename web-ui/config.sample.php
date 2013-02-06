@@ -2,10 +2,14 @@
 
 // PRISM
 // By viveleroi.
+// discover-prism.com
 require_once('libs/Peregrine.php');
 require_once('libs/Auth.php');
 require_once('libs/Prism.php');
 define('WEB_UI_VERSION', 'nightly');
+
+
+// REMEMBER: Rename this file to "config.php".
 
 
 // ------------------------------------------
@@ -50,11 +54,22 @@ $auth->addUser( "admin", "prism" );
 
 
 // ------------------------------------------
-// INTERNAL STUFF (IGNORE)
+// OVERRIDE THE AUTHENTICATION
 // ------------------------------------------
 
-//error_reporting(E_ALL);
-//ini_set('display_errors', true);
+// It's very easy to write a custom class to authenticate
+// users using your own system
+
+// Simple review the example-auth/CustomAuth.php file for
+// directions, and then be sure to include your custom
+// file here:
+
+// include('example-auth/CustomAuth.php');
+
+
+// ------------------------------------------
+// INTERNAL STUFF (IGNORE)
+// ------------------------------------------
 
 session_start();
 

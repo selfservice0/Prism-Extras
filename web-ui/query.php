@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once('config.sample.php');
 
 $token = $peregrine->session->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
 if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){
@@ -158,9 +158,6 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
 // Order by
 $sql .= ' ORDER BY id DESC';
-
-//print $sql;
-//exit;
 
 $per_page = $peregrine->post->getInt('per_page');
 // Try to ensure it's somewhat sensible

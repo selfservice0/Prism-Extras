@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once('config.sample.php');
 
 // If login form submitted
 if(!$peregrine->post->isEmpty('username')){
@@ -160,7 +160,7 @@ if(!$peregrine->post->isEmpty('username')){
                         </ol>
                     </div>
                 </div>
-                <footer><p>Prism WebUI <?= WEB_UI_VERSION ?> &mdash; By Viveleroi</p></footer>
+                <footer><p>Prism WebUI <?= WEB_UI_VERSION ?> &mdash; By Viveleroi. <a href="http://discover-prism.com">Help / Donate</a></p></footer>
             </div>
         </article>
         <div class="modal hide fade">

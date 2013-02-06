@@ -20,7 +20,7 @@ class Auth {
      * Holds the password hashing system
      * @var PasswordHash
      */
-    private $hasher;
+    protected $hasher;
 
 
     /**

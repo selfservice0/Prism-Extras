@@ -13,7 +13,7 @@ h1 {
 form h6 { margin-top: 0 }
 .dropdown-toggle.btn { margin-bottom: 10px }
 footer.form-actions { margin-top: 0 }
-.table-wrap { background-color: #fefefe; border-radius: 3px; min-height: 1200px; position: relative }
+.table-wrap { background-color: #fefefe; border-radius: 3px; min-height: 1000px; position: relative }
 table, .table { width: 940px; margin-bottom: 0 }
 table th:first-child { width: 70px; }
 table th:nth-child(2) { width: 120px; }

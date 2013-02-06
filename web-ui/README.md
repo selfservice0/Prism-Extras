@@ -7,11 +7,15 @@ For example, if you have the Apache web server installed, determine the director
 
 If you're unfamiliar with these web servers, there are package installers like WAMP and MAMP available for Windows/Mac systems.
 
-**Step 2: Set your MySQL connection information in the config.php file.**
+**Step 2: Re-name `config.sample.php` to `config.php`.**
+
+We provide a sample config, but you must rename it so that future updates to the web ui won't replace what you've done.
+
+**Step 3: Set your MySQL connection information in the config.php file.**
 
 Make sure the connection credentials match what your Prism plugin use - so that the web ui talks to the same database.
 
-**Step 3: If you wish, enable authentication and change the default user, or add more.**
+**Step 4: If you wish, enable authentication and change the default user, or add more.**
 
 Currently, you may manually add as many user accounts as you wish. If you've disabled authentication though, they'll never be used.
 
