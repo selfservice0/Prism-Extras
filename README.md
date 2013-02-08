@@ -17,7 +17,7 @@ Prism not only offers the standard features you expect, but a **lot** more.
 
 "This is definetly the best rollback plugin I have used"
 
-"I've only been using it for a bit and I'm beyond impressed!"
+"After using prism I realize how un-usable coreprotect is"
 
 "I love this plugin! Seemed so hard at first, then I used it."
 
@@ -145,9 +145,7 @@ Prism, designed with experience from using competing products on DHMC, and deali
 - YeaItsMe (*Release QA*)
 - nasonfish, Natman93, YeaItsMe, mafoan (*Alpha Testers*)
 - mafoan, randox24, tacovan, nehocbelac, Shampoo123, cxmmy14, Palczynski, drac17, ollie2000, PGKxNIGHTMARE, allies333, DocVanNostrand, drfizzman123, 00benallen, rachaelriott, PheonixTamer, YeaItsMe, Natman93, Brazter, sydney2005, rsleight, napalm1, Teh_Fishman, and plenty more from DHMC (*Live Testers on DHMC*)
-
 - WorldEdit block logging [#1](https://github.com/LogBlock/LogBlock/tree/master/src/main/java/de/diddiz/worldedit ) based on work by [Ammaraskar](https://github.com/ammaraskar )
-- Time format string parsing [#2](https://github.com/oliverw92/HawkEye/blob/master/src/main/java/uk/co/oliwali/HawkEye/SearchParser.java#L155 ) and temporary safe teleport based on work by [oliverw92](https://github.com/oliverw92 )
 - [Metrics](http://mcstats.org) class Copyright 2011 Tyler Blair. All rights reserved.
 - Artwork by [LegendarySoldier](http://legendary-soldier.deviantart.com/ )
 
