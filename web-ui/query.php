@@ -8,10 +8,10 @@ if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){
 }
 
 // Connect with db
-$link = mysql_connect(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD);
-$db_selected = mysql_select_db(MYSQL_DATABASE, $link);
-
-// @todo handle mysql errors
+$link = mysqli_connect(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
+if (!$link) {
+    die('Prism WebUI Can\'t connect to the database. (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
+}
 
 // Build our query
 $sql = 'SELECT * FROM prism_actions WHERE 1=1';
@@ -150,8 +150,8 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
     // This is much faster than using SQL_CALC_FOUND_ROWS
     $total_results = 0;
     $count_sql = str_replace("SELECT *", "SELECT COUNT(id)", $sql);
-    $prism_result = mysql_query( $count_sql );
-    while( $row = mysql_fetch_array($prism_result)){
+    $prism_result = mysqli_query( $link, $count_sql );
+    while( $row = mysqli_fetch_array($link,$prism_result)){
         $total_results = $row[0];
     }
 
@@ -179,11 +179,11 @@ $offset = ($response['curr_page']-1)*$response['per_page'];
 $sql .= ' LIMIT '.$offset.','.$response['per_page'];
 
 
-$prism_result = mysql_query( $sql );
+$prism_result = mysqli_query( $link, $sql );
 if($prism_result){
     $results = array();
     $blocks = $prism->getItemList();
-    while( $row = mysql_fetch_assoc($prism_result)){
+    while( $row = mysqli_fetch_assoc($prism_result)){
         if(strpos($row['data'], "{") !== false){
 
             $row['data'] = (array)json_decode($row['data']);
