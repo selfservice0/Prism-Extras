@@ -1,6 +1,7 @@
 <?php
 
 require_once('config.php');
+require_once('libs/Bootstrap.php');
 
 // If login form submitted
 if(!$peregrine->post->isEmpty('username')){

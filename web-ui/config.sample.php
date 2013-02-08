@@ -66,21 +66,3 @@ $auth->addUser( "admin", "prism" );
 // file here:
 
 // include('example-auth/CustomAuth.php');
-
-
-// ------------------------------------------
-// INTERNAL STUFF (IGNORE)
-// ------------------------------------------
-
-session_start();
-
-$peregrine = new Peregrine;
-$peregrine->init();
-
-$prism = new Prism;
-
-// Connect with db, so we can show errors and not wait for ajax.
-$link = mysqli_connect(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
-if (!$link) {
-    die('Prism WebUI Can\'t connect to the database. (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
-}

@@ -1,6 +1,7 @@
 <?php
 
 require_once('config.php');
+require_once('libs/Bootstrap.php');
 
 $token = $peregrine->session->getUsername('username').$peregrine->server->getRaw('REMOTE_ADDR');
 if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){
@@ -144,8 +145,9 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
     // This is much faster than using SQL_CALC_FOUND_ROWS
     $total_results = 0;
     $count_sql = str_replace("SELECT *", "SELECT COUNT(id)", $sql);
-    $prism_result = mysqli_query( $link, $count_sql );
-    while( $row = mysqli_fetch_array($link,$prism_result)){
+    $statement = $db->query($count_sql);
+    //$statement->setFetchMode(PDO::FETCH_ASSOC);
+    while($row = $statement->fetch()) {
         $total_results = $row[0];
     }
 
@@ -172,12 +174,12 @@ $response = array(
 $offset = ($response['curr_page']-1)*$response['per_page'];
 $sql .= ' LIMIT '.$offset.','.$response['per_page'];
 
-
-$prism_result = mysqli_query( $link, $sql );
-if($prism_result){
+$statement = $db->query($sql);
+$statement->setFetchMode(PDO::FETCH_ASSOC);
+if($statement->rowCount()){
     $results = array();
     $blocks = $prism->getItemList();
-    while( $row = mysqli_fetch_assoc($prism_result)){
+    while($row = $statement->fetch()){
         if(strpos($row['data'], "{") !== false){
 
             $row['data'] = (array)json_decode($row['data']);
