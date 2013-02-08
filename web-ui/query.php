@@ -7,12 +7,6 @@ if(!$auth->checkToken($token,$peregrine->session->getRaw('token'))){
     exit;
 }
 
-// Connect with db
-$link = mysqli_connect(MYSQL_HOSTNAME, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
-if (!$link) {
-    die('Prism WebUI Can\'t connect to the database. (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
-}
-
 // Build our query
 $sql = 'SELECT * FROM prism_actions WHERE 1=1';
 
