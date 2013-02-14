@@ -10,13 +10,8 @@
 --
 
 
--- TEMP ONLY, for dev
--- http://is.gd/Q8BQQT
-TRUNCATE TABLE prism_actions;
-
-
 -- Normalize the hawkeye data so we can avoid a ton of conditions
-UPDATE hawkeye SET hawkeye.data = CONCAT(hawkeye.data, ':0') WHERE LOCATE(":", hawkeye.data) = 0 AND hawkeye.action IN (0,1,17,18,20,26,27,34);
+UPDATE hawkeye SET hawkeye.data = CONCAT(hawkeye.data, ':0') WHERE LOCATE(":", hawkeye.data) = 0 AND hawkeye.action IN (0,1,10,11,14,15,17,18,20,23,24,25,26,27,34);
 
 -- block-break
 INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
@@ -147,27 +142,46 @@ INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
   WHERE hawkeye.action = 27;
 
 
--- @todo item-drop data = 1x 325 or 1x 5:3
---
---     2 - Sign Place
---     7 - Teleport
---     10 - Open Chest
---     11 - Door Interact
---     12 - PvP Death
---     14 - Lever
---     15 - Button
---     19 - Block Form (logged as player Environment)
---     20 - Leaf Decay (logged as player Environment)
---     21 - Mob Death
---     22 - Other Death
---     23 - Item Drop
---     24 - Item Pickup
---     25 - Block Fade (logged as player Environment)
---     28 - Container Transaction
---     29 - Sign Break
---     30 - Painting Break
---     31 - Painting Place
---     32 - Enderman pickup
---     33 - Enderman place
---     35 - Mushroom grow
---     36 - Mob kill
+-- container-access
+INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+  SELECT hawkeye.date, "container-access", hawk_players.player, hawk_worlds.world, hawkeye.x, hawkeye.y, hawkeye.z, CONCAT('{"block_id":',SUBSTRING_INDEX(SUBSTRING_INDEX(hawkeye.data,'-',-1),':',1),',"block_subid":', SUBSTRING_INDEX(SUBSTRING_INDEX(hawkeye.data,'-',-1),':',-1), '}')
+  FROM hawkeye
+  JOIN hawk_players ON hawkeye.player_id = hawk_players.player_id
+  JOIN hawk_worlds ON hawkeye.world_id = hawk_worlds.world_id
+  WHERE hawkeye.action = 10;
+
+-- block-use
+INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+  SELECT hawkeye.date, "block-use", hawk_players.player, hawk_worlds.world, hawkeye.x, hawkeye.y, hawkeye.z, CONCAT('{"block_id":',SUBSTRING_INDEX(SUBSTRING_INDEX(hawkeye.data,'-',-1),':',1),',"block_subid":', SUBSTRING_INDEX(SUBSTRING_INDEX(hawkeye.data,'-',-1),':',-1), '}')
+  FROM hawkeye
+  JOIN hawk_players ON hawkeye.player_id = hawk_players.player_id
+  JOIN hawk_worlds ON hawkeye.world_id = hawk_worlds.world_id
+  WHERE hawkeye.action = 11 OR hawkeye.action = 14 OR hawkeye.action = 15;
+
+-- item-drop
+INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+  SELECT hawkeye.date, "item-drop", hawk_players.player, hawk_worlds.world, hawkeye.x, hawkeye.y, hawkeye.z, CONCAT('{"block_id":',SELECT SUBSTRING_INDEX( SUBSTRING_INDEX(hawkeye.data,'x ',-1), ':', 1) FROM hawkeye WHERE action = 23;,',"block_subid":', SUBSTRING_INDEX( SUBSTRING_INDEX(hawkeye.data,'x ',-1), ':', -1),':',-1), ',"amt":',SUBSTRING_INDEX(hawkeye.data,'x ',1),'}')
+  FROM hawkeye
+  JOIN hawk_players ON hawkeye.player_id = hawk_players.player_id
+  JOIN hawk_worlds ON hawkeye.world_id = hawk_worlds.world_id
+  WHERE hawkeye.action = 23;
+
+-- item-pickup
+INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+  SELECT hawkeye.date, "item-pickup", hawk_players.player, hawk_worlds.world, hawkeye.x, hawkeye.y, hawkeye.z, CONCAT('{"block_id":',SELECT SUBSTRING_INDEX( SUBSTRING_INDEX(hawkeye.data,'x ',-1), ':', 1) FROM hawkeye WHERE action = 23;,',"block_subid":', SUBSTRING_INDEX( SUBSTRING_INDEX(hawkeye.data,'x ',-1), ':', -1),':',-1), ',"amt":',SUBSTRING_INDEX(hawkeye.data,'x ',1),'}')
+  FROM hawkeye
+  JOIN hawk_players ON hawkeye.player_id = hawk_players.player_id
+  JOIN hawk_worlds ON hawkeye.world_id = hawk_worlds.world_id
+  WHERE hawkeye.action = 24;
+
+-- block-fade
+INSERT INTO prism_actions (action_time,action_type,player,world,x,y,z,data)
+  SELECT hawkeye.date, "block-fade", "Environment", hawk_worlds.world, hawkeye.x, hawkeye.y, hawkeye.z, CONCAT('{"block_id":',SUBSTRING_INDEX(hawkeye.data,':',1),',"block_subid":', SUBSTRING_INDEX(hawkeye.data,':',-1), '}')
+  FROM hawkeye
+  JOIN hawk_players ON hawkeye.player_id = hawk_players.player_id
+  JOIN hawk_worlds ON hawkeye.world_id = hawk_worlds.world_id
+  WHERE hawkeye.action = 25 AND hawk_players.player = "Environment";
+
+
+
+
