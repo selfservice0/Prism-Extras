@@ -13,8 +13,8 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		`co_blocks`.user, -- Username.
 		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END,  -- The world. At the moment we just have 1=world, 2=world_nether, 3=world_the_end
 		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.',-1), -- Y coordinate
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', -2 ),'.',1), -- Z
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
 	WHERE (`co_blocks`.user NOT LIKE '%#%') AND (`co_blocks`.action < 2 ) ORDER BY id ASC;
@@ -25,9 +25,9 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		'tnt-explode', 
 		'TNT', 
 		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END,
-		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.',-1), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', -2 ),'.',1), 
+		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
 	WHERE `co_blocks`.user LIKE '#tnt' AND `co_blocks`.action = 0 ORDER BY id ASC;
@@ -38,9 +38,9 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		'creeper-explode', 
 		'creeper', 
 		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END,
-		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.',-1), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', -2 ),'.',1), 
+		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
 	WHERE `co_blocks`.user LIKE '#creeper' AND `co_blocks`.action = 0 ORDER BY id ASC;
@@ -51,9 +51,9 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		'block-form', 
 		'vine', 
 		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END, 
-		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.',-1), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', -2 ),'.',1), 
+		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
 	WHERE `co_blocks`.user LIKE '#vine' AND `co_blocks`.action = 1 ORDER BY id ASC;
@@ -64,9 +64,9 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		'sign-change', 
 		`co_signs`.user, 
 		CASE WHEN `co_signs`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_signs`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END,
-		SUBSTRING_INDEX( `co_signs`.bcords , '.', 1 ), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_signs`.bcords , '.', 2 ),'.',-1), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_signs`.bcords , '.', -2 ),'.',1),
+		SUBSTRING_INDEX( `co_signs`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_signs`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_signs`.bcords , '.', 3 ),'.', -1), -- Z
 		-- {"lines":["1","2","3","4"],"sign_type"="SIGN_POST","facing"="NORTH"}  CO doesn't track the stuff like type and facing, so we just add that last part in.
 		CONCAT("{\"lines\":[\"", `co_signs`.line1, "\",\"", `co_signs`.line2, "\",\"", `co_signs`.line3, "\",\"", `co_signs`.line4, "\"],\"sign_type\"=\"SIGN_POST\",\"facing\"=\"NORTH\"}")
 	FROM `co_signs`
@@ -80,9 +80,9 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 		CASE WHEN `co_blocks`.action = 0 THEN 'enderman-pickup' ELSE 'enderman-drop' END, 
 		'enderman',
 		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END,
-		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.',-1), 
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', -2 ),'.',1),
+		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
 		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
 	FROM `co_blocks`
 	WHERE (`co_blocks`.user LIKE '#enderman') AND (`co_blocks`.action < 2 ) ORDER BY id ASC;
@@ -96,7 +96,7 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 	-- leaf decay
 	-- lighter
 	-- block burn
-	--lava/waer bukcet
+	-- lava/water bucket
 	-- block form
 	-- block-use
 	-- chat/command
