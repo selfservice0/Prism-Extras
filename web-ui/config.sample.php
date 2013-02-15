@@ -25,6 +25,21 @@ define("MYSQL_PASSWORD", "");
 define("MYSQL_DATABASE", "minecraft");
 define("MYSQL_PORT", 3306);
 
+
+// ------------------------------------------
+// TIMEZONE
+// ------------------------------------------
+
+// For date calculations, php needs you to set a timezone if you haven't
+// by default (in php.ini). Please make sure it's the same timezone
+// that your MySQL is set to use, so that dates will be equal
+// when using the timeframe field.
+
+// List of supported timezones:
+// http://php.net/manual/en/timezones.php
+date_default_timezone_set('America/Los_Angeles');
+
+
 // NOTICE:
 //
 // We *strongly* recommend that you use a mysql account that has been given
