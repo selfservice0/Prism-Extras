@@ -183,17 +183,44 @@ if($statement->rowCount()){
         if(strpos($row['data'], "{") !== false){
 
             $row['data'] = (array)json_decode($row['data']);
+            $newData = $row['data'];
 
+            // Standard block
             if(isset($row['data']['block_id'])){
                 $key = $row['data']['block_id'] . ':' . $row['data']['block_subid'];
                 if(isset($blocks[$key])){
-                    $row['data'] = ucwords($blocks[$key]);
+                    $newData = ucwords($blocks[$key]);
                 }
                 // check for some data items having an unusable subid
                 else if(isset($blocks[$row['data']['block_id'] . ':0'])){
-                    $row['data'] = ucwords($blocks[$row['data']['block_id'] . ':0']);
+                    $newData = ucwords($blocks[$row['data']['block_id'] . ':0']);
                 }
             }
+
+            // Original block/New block
+            if(isset($row['data']['newBlock_id'])){
+                $key = $row['data']['newBlock_id'] . ':' . $row['data']['newBlock_subid'];
+                if(isset($blocks[$key])){
+                    $newData = ucwords($blocks[$key]);
+                }
+                // check for some data items having an unusable subid
+                else if(isset($blocks[$row['data']['newBlock_id'] . ':0'])){
+                    $newData = ucwords($blocks[$row['data']['newBlock_id'] . ':0']);
+                }
+            }
+            if(isset($row['data']['originalBlock_id'])){
+                $key = $row['data']['originalBlock_id'] . ':' . $row['data']['originalBlock_subid'];
+                if(isset($blocks[$key])){
+                    $newData .= ' replaced ' . ucwords($blocks[$key]);
+                }
+                // check for some data items having an unusable subid
+                else if(isset($blocks[$row['data']['originalBlock_id'] . ':0'])){
+                    $newData .= ' replaced ' . ucwords($blocks[$row['data']['originalBlock_id'] . ':0']);
+                }
+            }
+
+            $row['data'] = $newData;
+
         }
         $results[] = $row;
     }
