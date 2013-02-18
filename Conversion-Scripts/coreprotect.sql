@@ -146,11 +146,23 @@ INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, dat
 -- Prism only tracks a place at the new spot, and that's all we need.
 -- So, we need to ignore the other two.
 -- Import block-shift
-CREATE TEMPORARY TABLE co_pistons
+DROP TABLE IF EXISTS co_pistons;
+CREATE TABLE co_pistons
 	LIKE co_blocks;
 	
-INSERT INTO co_pistons (cx, cz, time, user, bcords, type, data, action, rb, wid)
-	SELECT `co_blocks`.cx,
+ALTER TABLE co_pistons
+	ADD isFrom boolean;
+
+ALTER TABLE co_pistons
+	ADD x int(11);
+ALTER TABLE co_pistons
+	ADD y int(11);
+ALTER TABLE co_pistons
+	ADD z int(11);
+	
+INSERT INTO co_pistons (id, cx, cz, time, user, bcords, type, data, action, rb, wid, isFrom, x, y, z)
+	SELECT `co_blocks`.id,
+		`co_blocks`.cx,
 		`co_blocks`.cz,
 		`co_blocks`.time,
 		`co_blocks`.user,
@@ -159,25 +171,91 @@ INSERT INTO co_pistons (cx, cz, time, user, bcords, type, data, action, rb, wid)
 		`co_blocks`.data,
 		`co_blocks`.action,
 		`co_blocks`.rb,
-		`co_blocks`.wid
+		`co_blocks`.wid,
+		False,
+		0,
+		0,
+		0
 	FROM `co_blocks`
 	WHERE `co_blocks`.user LIKE "#piston" ORDER BY id ASC;
+	
+UPDATE co_pistons 
+	SET isFrom = True
+	WHERE EXISTS(
+		SELECT id FROM `co_blocks` WHERE
+			`co_blocks`.user LIKE '#piston'
+			AND time < (`co_blocks`.time + 20) 
+			AND time > (`co_blocks`.time - 20) 
+			AND `co_blocks`.bcords LIKE `co_pistons`.bcords 
+			AND `co_blocks`.action = 0 
+			AND `co_pistons`.id != `co_blocks`.id
+	) 
+	AND action = 1;
+	
+DELIMITER $$ -- Change our delimiter
+DROP FUNCTION IF EXISTS getCoords;
+CREATE FUNCTION getCoords (coords VARCHAR(23))
+RETURNS VARCHAR(23)
+DETERMINISTIC
+BEGIN
+	DECLARE x1 int(11);
+	DECLARE y1 int(11);
+	DECLARE z1 int(11);
+	
+	SET x1 = SUBSTRING_INDEX( coords , '.', 1 ); -- This will get the X coordinate of this action
+	SET y1 = SUBSTRING_INDEX(SUBSTRING_INDEX( coords , '.', 2 ),'.', -1); -- Y coordinate
+	SET z1 = SUBSTRING_INDEX(SUBSTRING_INDEX( coords , '.', 3 ),'.', -1); -- Z
+	
+	RETURN (SELECT bcords FROM `co_pistons` WHERE
+		-- THIS CODE WILL BE MESSY. RUN.
+		(
+			(x1 + 1 = SUBSTRING_INDEX( `co_pistons`.bcords , '.', 1 ) OR x1 - 1 = SUBSTRING_INDEX( `co_pistons`.bcords , '.', 1 )) AND
+			SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 2 ),'.', -1) = y1 AND
+			SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 3 ),'.', -1) = z1
+		) OR (
+			SUBSTRING_INDEX( `co_pistons`.bcords , '.', 1 ) = x1 AND
+			(y1 + 1 = SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 2 ),'.', -1) OR y1 - 1 =  SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 2 ),'.', -1)) AND
+			SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 3 ),'.', -1) = z1
+		) OR (
+			SUBSTRING_INDEX( `co_pistons`.bcords , '.', 1 ) = x1 AND
+			SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 2 ),'.', -1) = y1 AND
+			(z1 + 1 = SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 3 ),'.', -1) OR z1 - 1 = SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 3 ),'.', -1))
+		)
+		LIMIT 1
+	);
+		
+END$$
+
+DELIMITER ; -- Change it back
+
+DELETE FROM co_pistons
+	WHERE action = 0;
+
+UPDATE `co_pistons`
+	SET `co_pistons`.x = SUBSTRING_INDEX( getCoords(`co_pistons`.bcords) , '.', 1 )
+	WHERE (`co_pistons`.isFrom = 0);
+	
+UPDATE `co_pistons`
+	SET y = SUBSTRING_INDEX(SUBSTRING_INDEX( getCoords(`co_pistons`.bcords) , '.', 2 ),'.', -1)
+	WHERE NOT `co_pistons`.isFrom;
+	
+UPDATE `co_pistons`
+	SET z = SUBSTRING_INDEX(SUBSTRING_INDEX( getCoords(`co_pistons`.bcords) , '.', 3 ),'.', -1)
+	WHERE NOT `co_pistons`.isFrom;
+	
 
 -- Block-shift
 INSERT INTO prism_actions (action_time, action_type, player, world, x, y, z, data)
-	SELECT FROM_UNIXTIME(`co_blocks`.time), 
+	SELECT FROM_UNIXTIME(`co_pistons`.time), 
 		'block-shift', 
 		'Piston', 
-		CASE WHEN `co_blocks`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_blocks`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END, 
-		SUBSTRING_INDEX( `co_blocks`.bcords , '.', 1 ), -- This will get the X coordinate of this action
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 2 ),'.', -1), -- Y coordinate
-		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_blocks`.bcords , '.', 3 ),'.', -1), -- Z
-		CONCAT("{\"block_id\":", `co_blocks`.type, ",\"block_data\":", `co_blocks`.data, "}")
-	FROM `co_blocks`
-	WHERE `co_blocks`.user LIKE '#piston' AND `co_blocks`.action = 1 AND NOT
-	(EXISTS(
-		SELECT `id` FROM `co_pistons` WHERE action = 0 AND time < (`co_blocks`.time + 20) AND time > (`co_blocks`.time - 20) AND `co_blocks`.bcords LIKE bcords
-	))
+		CASE WHEN `co_pistons`.wid = 1 THEN 'world' ELSE (CASE WHEN `co_pistons`.wid = 2 THEN 'world_nether' ELSE 'world_the_end' END) END, 
+		SUBSTRING_INDEX( `co_pistons`.bcords , '.', 1 ), -- This will get the X coordinate of this action
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 2 ),'.', -1), -- Y coordinate
+		SUBSTRING_INDEX(SUBSTRING_INDEX( `co_pistons`.bcords , '.', 3 ),'.', -1), -- Z
+		CONCAT("{\"block_id\":", `co_pistons`.type, ",\"block_data\":", `co_pistons`.data, ',"x"=', `co_pistons`.x, ',"y"=', `co_pistons`.y, ',"z"=', `co_pistons`.z, '}')
+	FROM `co_pistons`
+	WHERE NOT isFrom
 	ORDER BY id ASC;
 
 DROP TABLE co_pistons;
