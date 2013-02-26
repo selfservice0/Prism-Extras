@@ -161,7 +161,7 @@ if(!$peregrine->post->isEmpty('username')){
                         </ol>
                     </div>
                 </div>
-                <footer><p>Prism WebUI <?= WEB_UI_VERSION ?> &mdash; By Viveleroi. <a href="http://discover-prism.com">Help / Donate</a></p></footer>
+                <footer><p>Prism WebUI <?php print WEB_UI_VERSION ?> &mdash; By Viveleroi. <a href="http://discover-prism.com">Help / Donate</a></p></footer>
             </div>
         </article>
         <div class="modal hide fade">
@@ -196,13 +196,13 @@ if(!$peregrine->post->isEmpty('username')){
         <script src="js/app.js"></script>
         <script>
             $('#actions').typeahead({
-                source: <?= json_encode( $prism->getActionTypes() ) ?>,
+                source: <?php print json_encode( $prism->getActionTypes() ) ?>,
                 updater: updater,
                 matcher: matcher,
                 highlighter: highlighter
             });
             $('#blocks').typeahead({
-                source: <?= json_encode( array_values($prism->getItemList()) ) ?>,
+                source: <?php print json_encode( array_values($prism->getItemList()) ) ?>,
                 updater: updater,
                 matcher: matcher,
                 highlighter: highlighter

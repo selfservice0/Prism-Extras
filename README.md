@@ -2,9 +2,9 @@
 
 *An incredible plugin for rollbacks, restores, and more.*
 
-Prism is the ultimate grief management (rollbacks, restores, etc) plugin for your Bukkit server. It's extremely fast, versatile, and incredibly powerful. It's smart rollback engine and a wide range of features put Prism in a class all it's own.
+Prism is the ultimate grief management (rollbacks, restores, etc) plugin for your Bukkit server. It's amazingly fast, versatile, and a pleasure to use. Prism tracks 59+ events, boasts a vastly superior rollback engine, and offers tons of extra features. 
 
-Prism not only offers the standard features you expect, but a **lot** more.
+Prism is truly in a class of its own.
 
 
 ![Prism](http://dhmc.us.s3.amazonaws.com/prism.jpg)
@@ -23,11 +23,13 @@ Prism not only offers the standard features you expect, but a **lot** more.
 
 ## Official Website & Documentation
 
-**MUST READ ;)**
-
-[DISCOVER-PRISM.COM](http://discover-prism.com/ )
-
-[Contribute/Source](https://github.com/botskonet/Prism )
+- [Official Site - Wiki, WebUI, Import Scripts, etc (discover-prism.com)](http://discover-prism.com/ )
+- [Installation & Permissions](http://discover-prism.com/wiki/view/installation/)
+- [Commands](http://discover-prism.com/wiki/view/commands/)
+- [Troubleshooting](http://discover-prism.com/wiki/view/troubleshooting/)
+- [Contribute](https://github.com/botskonet/Prism )
+- [Get Help - IRC - irc.esper.net #prism](http://webchat.esper.net/?channels=prism)
+- [Prism Bug Tracker](https://snowy-evening.com/botsko/prism/ )
 
 
 ## Some Videos
@@ -42,7 +44,7 @@ Prism not only offers the standard features you expect, but a **lot** more.
 
 ## Features Overview
 
-- Prism tracks 51 (and growing) different player, entity, and world events.
+- Prism tracks 59 (and growing) different player, entity, and world events.
 - Multiple tools and commands let you see exactly what happened.
 - Rollback or restore events directly, or with a safer preview mode first.
 - Safe command defaults, very clean and fun to use chat messages.
@@ -56,7 +58,7 @@ Prism not only offers the standard features you expect, but a **lot** more.
 
 ### Events and Lookup
 
-- Tracks 51+ player, entity, and world events.
+- Tracks 59+ player, entity, and world events.
 - Includes block changes, container access, item inserts/remove/pickups/drops, entity deaths, shearing, and a LOT more.
 - Related events tracked to causing player, like blocks falling, blocks detaching, trees growing, and much more.
 - Smart logging and rollback of important related data like sign text, sheep color, wolf owner, animal age, villager profession, etc
@@ -147,10 +149,11 @@ Prism, designed with experience from using competing products on DHMC, and deali
 - mafoan, randox24, tacovan, nehocbelac, Shampoo123, cxmmy14, Palczynski, drac17, ollie2000, PGKxNIGHTMARE, allies333, DocVanNostrand, drfizzman123, 00benallen, rachaelriott, PheonixTamer, YeaItsMe, Natman93, Brazter, sydney2005, rsleight, napalm1, Teh_Fishman, and plenty more from DHMC (*Live Testers on DHMC*)
 - WorldEdit block logging [#1](https://github.com/LogBlock/LogBlock/tree/master/src/main/java/de/diddiz/worldedit ) based on work by [Ammaraskar](https://github.com/ammaraskar )
 - [Metrics](http://mcstats.org) class Copyright 2011 Tyler Blair. All rights reserved.
-- Artwork by [LegendarySoldier](http://legendary-soldier.deviantart.com/ )
+- Artwork by [LegendarySoldier](http://legendary-soldier.deviantart.com/
 
 
 ## COMMENTING?
 
-- Reporting a bug? Suggesting a feature? Do so here: [Prism Bug Tracker](https://snowy-evening.com/botsko/prism/ )
-- Prism not working? Check these common problems FIRST: [Troubleshooting](http://discover-prism.com/wiki/view/troubleshooting/ )
+- Do NOT post error logs here. We will delete them.
+- **Instead**, make [a paste](http://pste.me) with and show us in [IRC - irc.esper.net #prism](http://webchat.esper.net/?channels=prism) or [file a bug](https://snowy-evening.com/botsko/prism/ )
+- If you didn't read the [Troubleshooting](http://discover-prism.com/wiki/view/troubleshooting/) page, we'll delete the comment.

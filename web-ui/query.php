@@ -145,8 +145,11 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
     // This is much faster than using SQL_CALC_FOUND_ROWS
     $total_results = 0;
     $count_sql = str_replace("SELECT *", "SELECT COUNT(id)", $sql);
+
+print $count_sql;
+exit;
+
     $statement = $db->query($count_sql);
-    //$statement->setFetchMode(PDO::FETCH_ASSOC);
     while($row = $statement->fetch()) {
         $total_results = $row[0];
     }
