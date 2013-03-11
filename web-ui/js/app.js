@@ -9,7 +9,7 @@ $(function(){
 
                     data = resp.results[r].data;
 
-                    if(typeof resp.results[r].data == "object"){;
+                    if( typeof resp.results[r].data === "object" && resp.results[r].data != null ){;
                         data = "";
                         $.each(resp.results[r].data, function(k,v){
                             data += k + ": " + v + "<br/>";
@@ -21,7 +21,7 @@ $(function(){
                     tr += '<td>'+resp.results[r].x+' '+resp.results[r].y+' '+resp.results[r].z+'</td>';
                     tr += '<td>'+resp.results[r].action_type+'</td>';
                     tr += '<td>'+resp.results[r].player+'</td>';
-                    tr += '<td>'+data+'</td>';
+                    tr += '<td>'+(data === null ? '' : data)+'</td>';
                     tr += '<td>'+resp.results[r].action_time+'</td>';
                     tr += '</tr>'
 

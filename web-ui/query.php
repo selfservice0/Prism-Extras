@@ -97,8 +97,8 @@ $sql = 'SELECT * FROM prism_actions WHERE 1=1';
     }
     
     // Data
-    if(!$peregrine->post->isEmpty('datas')){
-        $data = explode(",", $peregrine->post->getRaw('datas'));
+    if(!$peregrine->post->isEmpty('keyword')){
+        $data = explode(",", $peregrine->post->getRaw('keyword'));
     	$sql .= buildOrLikeQuery('prism_actions.data',$data);
     }
 
@@ -185,6 +185,16 @@ if($statement->rowCount()){
     $results = array();
     $blocks = $prism->getItemList();
     while($row = $statement->fetch()){
+
+        if( $row['block_id'] > 0 || $row['old_block_id'] > 0 ){
+            $key = $row['old_block_id'] . ':' . $row['old_block_subid'];
+            $newkey = $row['block_id'] . ':' . $row['block_subid'];
+            $row['data'] = $blocks[$newkey];
+            if( $row['old_block_id'] > 0 ){
+                $row['data'] .= ' replaced ' . $blocks[$key];
+            }
+        }
+
         if(strpos($row['data'], "{") !== false){
 
             $row['data'] = (array)json_decode($row['data']);

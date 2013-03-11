@@ -17,8 +17,6 @@ Prism is truly in a class of its own.
 
 "This is definetly the best rollback plugin I have used"
 
-"After using prism I realize how un-usable coreprotect is"
-
 "I love this plugin! Seemed so hard at first, then I used it."
 
 ## Official Website & Documentation
@@ -27,7 +25,7 @@ Prism is truly in a class of its own.
 - [Installation & Permissions](http://discover-prism.com/wiki/view/installation/)
 - [Commands](http://discover-prism.com/wiki/view/commands/)
 - [Troubleshooting](http://discover-prism.com/wiki/view/troubleshooting/)
-- [Contribute](https://github.com/botskonet/Prism )
+- [Contribute](https://github.com/prism/Prism )
 - [Get Help - IRC - irc.esper.net #prism](http://webchat.esper.net/?channels=prism)
 - [Prism Bug Tracker](https://snowy-evening.com/botsko/prism/ )
 
@@ -42,13 +40,28 @@ Prism is truly in a class of its own.
 
 [Video Tutorial 3: More on Rollbacks](http://www.youtube.com/watch?v=oHBXYzv7vWs)
 
+## Donate to Vive
+
+
+[![alt text][2]][1]
+
+  [1]: https://www.paypal.com/cgi-bin/webscr?return=http%3A%2F%2Fdev.bukkit.org%2Fserver-mods%2Fprism%2F&cn=Add+special+instructions+to+the+addon+author%28s%29&business=botsko%40gmail.com&bn=PP-DonationsBF%3Abtn_donateCC_LG.gif%3ANonHosted&cancel_return=http%3A%2F%2Fdev.bukkit.org%2Fserver-mods%2Fprism%2F&lc=US&item_name=Prism+%28from+Bukkit.org%29&cmd=_donations&rm=1&no_shipping=1&currency_code=USD
+  [2]: http://botsko.s3.amazonaws.com/paypal_donate.gif
+
+Hey, I'm **viveleroi** and I'm responsible for 99% of Prism, the WebUI, the website, the documentation, responding to comments, IRC, and snowy tickets. But I also have a job and a family. Prism, and the rest of my plugins take an incalculable amount of time and that's hard to manage without any pay.
+
+So please, *make a donation and make it easier for me to continue with these amazing plugins*.
+
 ## Features Overview
 
-- Prism tracks 59 (and growing) different player, entity, and world events.
+- Prism tracks 60 (and growing) different player, entity, and world events.
 - Multiple tools and commands let you see exactly what happened.
 - Rollback or restore events directly, or with a safer preview mode first.
+- Extremely configurable
+- Works for Bukkit, Spigot, MCPC+, Tekkit, etc - handles as best as possible on modded server
 - Safe command defaults, very clean and fun to use chat messages.
-- Smarter rollbacks/restores, and a dozen extra features.
+- Smartest rollback/restore engine ever.
+- A dozen extra grief management features that *NO* other rollback plugin has.
 - Extremely fast. Takes a pounding. 
 - Extremely configurable.
 - Dozens of extra features you don't get from other plugins.
@@ -58,13 +71,14 @@ Prism is truly in a class of its own.
 
 ### Events and Lookup
 
-- Tracks 59+ player, entity, and world events.
+- Tracks 60+ player, entity, and world events.
 - Includes block changes, container access, item inserts/remove/pickups/drops, entity deaths, shearing, and a LOT more.
 - Related events tracked to causing player, like blocks falling, blocks detaching, trees growing, and much more.
 - Smart logging and rollback of important related data like sign text, sheep color, wolf owner, animal age, villager profession, etc
 - Tracks liquid flow and items that break because of it
 - Tracks world edits (Beta2-17+, requires world edit 5.4.5+)
 - Fine-tuned config allows you to control tracking of every single one.
+- Incredibly powerful config/personalization system for all wands - set the mode, item, even allow users to personalize how their own wands work.
 - Inspector wand allows you to find history for single blocks/spaces.
 - Near command finds recent events around you.
 - Lookup command is extremely powerful with our versatile parameters.
@@ -77,7 +91,7 @@ Prism is truly in a class of its own.
 - Rollback and restore commands you know and love.
 - Rollback or restore directly, or preview changes for _both_ modes first.
 - Apply/cancel previews, or let them auto-cancel after a minute.
-- Extremely safe default parameters make it harder for you to make mistakes, but can be overridden in-game when you absolutely need them.
+- Extremely safe default parameters make it harder for you to make mistakes, but can be overridden in-game when you absolutely need them, or can be disable entirely via config.
 - You can even rollback killed entities, items taken from containers, and more.
 - Sign rollbacks will restore their text (provided we tracked what was written)
 - Rollbacks of burn events also extinguish fires.
@@ -102,7 +116,9 @@ Prism is truly in a class of its own.
 ### Extra Features
 
 - Alerts for staff when players find natural ores (configurable).
-- Alerts for staff when players use flint and steel, place lava, or place any item listed in the config (like tnt).
+- Alerts for staff when players use flint and steel, place lava.
+- Alerts for staff on configurable list of placed/broken blocks (like tnt).
+- Alerts for staff for suspected piston xray cheats.
 - Put out fires with the extinguish command
 - Drain all liquids or just water/lava
 - Profile wand shows you data about a block.
@@ -118,7 +134,7 @@ Prism is truly in a class of its own.
 - Multi-threaded queue system for tracking events, combined with a batch recording system makes event recording happen quickly and without impacting your server.
 - Block r/r/p are queued for large changes to reduce chances of impacting the main thread.
 - Extremely smart database design with a lot of time invested in structure optimization, query performance testing, and more.
-- A dev server with 512M RAM, 2.7Ghz dual core processor, 6,886 blocks from a tnt explosion restored in 2.2 seconds - 2210 milliseconds from command to rollback completion. Most common rollbacks on the same machine tend to take < 200ms to restore. Similar results on relatively equal machines from shared bukkit hosting companies during initial tests.
+- A dev server with 512M RAM, 2.7Ghz dual core processor, 9k blocks from a tnt explosion restored in 1.4 seconds - 1467 milliseconds from command to rollback completion. Most common rollbacks on the same machine tend to take < 200ms to restore. Similar results on relatively equal machines from shared bukkit hosting companies during initial tests.
 
 
        
@@ -132,11 +148,6 @@ Attribution-NonCommercial-ShareAlike 3.0 United States
 
 http://creativecommons.org/licenses/by-nc-sa/3.0/us/
 
-## Donate
-
-I've invested a lot of time making Prism what is, along with some contributions and testing help by our server staff. Help me out, even if it's just $1 person.
-
-viveleroi - (PayPal; botsko@gmail.com) 
            
 ## Credits
 
